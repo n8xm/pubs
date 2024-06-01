@@ -5,6 +5,7 @@ import webbrowser
 from .. import repo
 from ..uis import get_ui
 from ..utils import resolve_citekey_list
+from ..completion import CiteKeyCompletion
 
 
 
@@ -12,7 +13,7 @@ def parser(subparsers, conf):
     parser = subparsers.add_parser('url',
                                    help="open a paper's url in the default web browser")
     parser.add_argument("citekey", nargs = '*',
-                        help="one or more citeKeys to open")
+                        help="one or more citeKeys to open").completer = CiteKeyCompletion(conf)
     return parser
 
 
